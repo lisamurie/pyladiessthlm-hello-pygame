@@ -1,3 +1,6 @@
-code {
-	height: 500px;
+.reveal pre code {
+	max-height: 750px;
+	height: 750px;
+  font-size: 16px;
+  margin-top: -50px;
 }
