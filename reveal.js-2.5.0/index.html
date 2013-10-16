@@ -20,6 +20,8 @@
 		<!-- For syntax highlighting -->
 		<link rel="stylesheet" href="lib/css/zenburn.css">
 
+		<link rel="stylesheet" href="css/hello_pygame.css">
+
 		<!-- If the query includes 'print-pdf', use the PDF print sheet -->
 		<script>
 			document.write( '<link rel="stylesheet" href="css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
@@ -45,15 +47,46 @@
 				</section>
 
 				<section>
-					<h2>Heads Up</h2>
-					<p>
-						reveal.js is a framework for easily creating beautiful presentations using HTML. You'll need a browser with
-						support for CSS 3D transforms to see it in its full glory.
-					</p>
+					<h2>What is Pygame?</h2>
+					<ol>
+						<li class="fragment roll-in">it is one thing</li>
+						<li class="fragment roll-in">a second thing</li>
+						<li class="fragment roll-in">...and a third thing</li>
+					</ol>
+				</section>
 
-					<aside class="notes">
-						Oh hey, these are some notes. They'll be hidden in your presentation, but you can see them if you open the speaker notes window (hit 's' on your keyboard).
-					</aside>
+				<section>
+					<h2>What can it be used for?</h2>
+					<ol>
+						<li class="fragment roll-in">it is one thing</li>
+						<li class="fragment roll-in">a second thing</li>
+						<li class="fragment roll-in">...and a third thing</li>
+					</ol>
+				</section>
+
+				<section>
+					<h2>Let's make a (small) game!</h2>
+				</section>
+
+				<section>
+					<section data-transition="none">
+						<pre><code data-trim contenteditable>
+import pygame, sys, os
+from pygame.locals import *
+
+pygame.init()
+						</code></pre>
+					</section>
+					<section data-transition="none">
+						<pre><code data-trim contenteditable>
+import pygame, sys, os
+from pygame.locals import *
+
+pygame.init()
+
+screen = pygame.display.set_mode((450, 450))
+						</code></pre>
+					</section>
 				</section>
 
 				<!-- Example of nested vertical slides -->
