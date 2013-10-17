@@ -3,7 +3,7 @@ import pygame, random
 class Kitten(pygame.sprite.Sprite):
   def __init__(self):
     pygame.sprite.Sprite.__init__(self) #call Sprite intializer
-    self.image = pygame.image.load('150.jpg')
+    self.image = pygame.image.load('kitten.jpg')
     self.rect = self.image.get_rect()
     self.rect.center = (250, 250)
 
@@ -28,4 +28,4 @@ while True:
 
   screen.blit(background, (0, 0))
   allsprites.draw(screen) 
-  pygame.display.flip() 
+  pygame.display.update() 

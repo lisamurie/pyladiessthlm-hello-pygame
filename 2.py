@@ -13,7 +13,7 @@ while True:
     pass
 
   screen.blit(background, (0, 0))
-  pygame.display.flip() 
+  pygame.display.update() 
 
 # -> yay, window stays - and we've got a game loop
 # -> a game loop is where we figure out what should happen next in our game

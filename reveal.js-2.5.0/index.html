@@ -48,26 +48,29 @@
 
 				<section>
 					<h2>What is Pygame?</h2>
-					<ol>
+					<ul>
 						<li class="fragment roll-in">A set of Python modules designed for writing video games</li>
 						<li class="fragment roll-in">Includes modules for graphics, sound, input (keyboard, mouse etc.)</li>
 						<li class="fragment roll-in">It's cross platform. Games run on Windows, Mac, Linux (+ others)</li>
 						<li class="fragment roll-in">It's open source and free to use (GPL License)</li>
-					</ol>
+					</ul>
 				</section>
 
 				<section>
 					<h2>What can it be used for?</h2>
-					<ol>
+					<ul>
 						<li class="fragment roll-in">All types of 2D Games</li>
 						<li class="fragment roll-in">Game prototyping</li>
 						<li class="fragment roll-in">Making a game in a week: <a href="http://pyweek.org/">pyweek.org</a></li>
-					</ol>
+					</ul>
 				</section>
 
 				<section>
 					<h2>Let's make a game!</h2>
 					<h4 class="fragment">(That fits in a slide)</h4>
+					<aside class="notes">
+						To make it fit in a slide, there are things here that could be done in a better way. But at the moment we focus on keeping it short!
+					</aside>
 				</section>
 
 				<section>
@@ -81,6 +84,14 @@ screen = pygame.display.set_mode((500, 500))
 background = pygame.Surface(screen.get_size())
 background.fill((250, 250, 250))
 						</code></pre>
+						<aside class="notes" data-markdown>
+							set_mode - creates a window 500 pixels wide an 500 pixels high
+'screen' is now this window
+
+pygame.Surface - creates a new Surface, a surface is like a blank piece of paper where you can draw anything you like
+
+'background' is now a Surface with the same height and width as the window and with a white background
+						</aside>
 					</section>
 					<section data-transition="none">
 						<pre><code data-trim contenteditable class="python">
@@ -99,8 +110,20 @@ while True:
     pass
 
   screen.blit(background, (0, 0))
-  pygame.display.flip()
+  pygame.display.update()
 						</code></pre>
+						<aside class="notes" data-markdown>
+						Add a game loop, to keep the game running.
+
+						A game loop runs the whole time the game is active and this where we figure out what should happen next in our game
+  	* both based on what the user has done (has he pressed a mouse button or keyboard key?) and on what is happening in the game, maybe an enemy has run into another enemy and something should happen?
+
+So we first look and see if the player has done anything, (but we don't use that information at the moment).
+
+Then it's time to draw everything on screen - right now that is just a white background that we copy (blit) to the window
+
+And then we tell pygame that it should update the window (it won't do it automatically)
+						</aside>
 					</section>
 					<section data-transition="none">
 						<pre><code data-trim contenteditable>
@@ -109,7 +132,7 @@ import pygame
 class Kitten(pygame.sprite.Sprite):
   def __init__(self):
     pygame.sprite.Sprite.__init__(self) #call Sprite intializer
-    self.image = pygame.image.load('150.jpg')
+    self.image = pygame.image.load('kitten.jpg')
     self.rect = self.image.get_rect()
     self.rect.center = (250, 250)
 
@@ -130,8 +153,22 @@ while True:
 
   screen.blit(background, (0, 0))
   allsprites.draw(screen) 
-  pygame.display.flip()
+  pygame.display.update()
 						</code></pre>
+						<aside class="notes" data-markdown>
+
+Let's add a kitten!
+The kitten will be represented by a photo of an actual kitten. So we make the kitten class a subclass of pygames Sprite class.
+
+A sprite is a two dimensional image in a game.
+
+When we create an instance of our new Kitten class, this happens:
+We load an image of a kitten, then we store away the rectangle of the image, because we will be using this to keep track of where the kitten is and move it around. Then we place the rectangle (and therefore the kitten) at the center of the screen.
+
+With "RenderPlain" we tell pygame that the new kitten sprite is one of the sprites that should be rendered (drawn).
+
+In the game loop we now also have to say that if there are any sprites, they should be drawn after the background has been drawn
+						</aside>
 					</section>
 					<section data-transition="none" data-top="-500px">
 						<pre><code data-trim contenteditable>
@@ -140,7 +177,7 @@ import pygame, random
 class Kitten(pygame.sprite.Sprite):
   def __init__(self):
     pygame.sprite.Sprite.__init__(self) #call Sprite intializer
-    self.image = pygame.image.load('150.jpg')
+    self.image = pygame.image.load('kitten.jpg')
     self.rect = self.image.get_rect()
     self.rect.center = (250, 250)
 
@@ -165,9 +202,18 @@ while True:
 
   screen.blit(background, (0, 0))
   allsprites.draw(screen) 
-  pygame.display.flip() 
+  pygame.display.update() 
 						</code></pre>
 					</section>
+					<aside class="notes" data-markdown>
+Let's make the kitten run away from the mouse!
+
+We already handle input from the user in the game loop, now we look at the input and if it is mouse movement -> send the mouse position to the kittens' new run_away_from method 
+
+The run_away_from method makes a test to see if this mouse position is inside the rectangle of the image (collidepoint). If it is - it's time to run away!
+
+move_ip (move in place) moves the kitten from 0-25 pixels in any direction!
+					</aside>
 				</section>
 				<section>
 					<h1>Resources</h1>
