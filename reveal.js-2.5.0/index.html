@@ -49,68 +49,93 @@
 				<section>
 					<h2>What is Pygame?</h2>
 					<ol>
-						<li class="fragment roll-in">it is one thing</li>
-						<li class="fragment roll-in">a second thing</li>
-						<li class="fragment roll-in">...and a third thing</li>
+						<li class="fragment roll-in">A set of Python modules designed for writing video games</li>
+						<li class="fragment roll-in">Includes modules for graphics, sound, input (keyboard, mouse etc.)</li>
+						<li class="fragment roll-in">It's cross platform. Games run on Windows, Mac, Linux (+ others)</li>
+						<li class="fragment roll-in">It's open source and free to use (GPL License)</li>
 					</ol>
 				</section>
 
 				<section>
 					<h2>What can it be used for?</h2>
 					<ol>
-						<li class="fragment roll-in">it is one thing</li>
-						<li class="fragment roll-in">a second thing</li>
-						<li class="fragment roll-in">...and a third thing</li>
+						<li class="fragment roll-in">All types of 2D Games</li>
+						<li class="fragment roll-in">Game prototyping</li>
+						<li class="fragment roll-in">Making a game in a week: <a href="http://pyweek.org/">pyweek.org</a></li>
 					</ol>
 				</section>
 
 				<section>
 					<h2>Let's make a game!</h2>
-					<h4>(That fits in a slide)</h4>
+					<h4 class="fragment">(That fits in a slide)</h4>
 				</section>
 
 				<section>
 					<section data-transition="none">
 						<pre><code data-trim contenteditable>
-import pygame, sys, os
-from pygame.locals import *
+import pygame
 
-# initialize pygame
 pygame.init()
+screen = pygame.display.set_mode((500, 500))
+
+background = pygame.Surface(screen.get_size())
+background.fill((250, 250, 250))
+						</code></pre>
+					</section>
+					<section data-transition="none">
+						<pre><code data-trim contenteditable class="python">
+import pygame
+
+pygame.init()
+screen = pygame.display.set_mode((500, 500))
+
+background = pygame.Surface(screen.get_size())
+background.fill((250, 250, 250))
+
+# game loop
+while True:
+  #Handle Input Events
+  for event in pygame.event.get():
+    pass
+
+  screen.blit(background, (0, 0))
+  pygame.display.flip()
 						</code></pre>
 					</section>
 					<section data-transition="none">
 						<pre><code data-trim contenteditable>
-import pygame, sys, os
-from pygame.locals import *
+import pygame
 
-# initialize pygame
+class Kitten(pygame.sprite.Sprite):
+  def __init__(self):
+    pygame.sprite.Sprite.__init__(self) #call Sprite intializer
+    self.image = pygame.image.load('150.jpg')
+    self.rect = self.image.get_rect()
+    self.rect.center = (250, 250)
+
 pygame.init()
+screen = pygame.display.set_mode((500, 500))
 
-# create a window
-screen = pygame.display.set_mode((450, 450))
-						</code></pre>
-					</section>
-					<section data-transition="none">
-						<pre><code data-trim contenteditable>
-import pygame, sys, os
-from pygame.locals import *
+background = pygame.Surface(screen.get_size())
+background.fill((250, 250, 250))
 
-# initialize pygame
-pygame.init()
+kitten = Kitten()
+allsprites = pygame.sprite.RenderPlain((kitten))
 
-# create a window
-screen = pygame.display.set_mode((450, 450))
+# game loop
+while True:
+  #Handle Input Events
+  for event in pygame.event.get():
+    pass
 
-# create an (infinite) game loop
-while 1:
-  pass
+  screen.blit(background, (0, 0))
+  allsprites.draw(screen) 
+  pygame.display.flip()
 						</code></pre>
 					</section>
 					<section data-transition="none" data-top="-500px">
 						<pre><code data-trim contenteditable>
 import pygame, random
-from pygame.locals import *
 
 class Kitten(pygame.sprite.Sprite):
   def __init__(self):
@@ -125,17 +150,17 @@ class Kitten(pygame.sprite.Sprite):
 
 pygame.init()
 screen = pygame.display.set_mode((500, 500))
+
 background = pygame.Surface(screen.get_size())
 background.fill((250, 250, 250))
 
-clock = pygame.time.Clock()
 kitten = Kitten()
 allsprites = pygame.sprite.RenderPlain((kitten))
 
-while 1:
+while True:
   #Handle Input Events
   for event in pygame.event.get():
-    if event.type == MOUSEMOTION:
+    if event.type == pygame.MOUSEMOTION:
       kitten.run_away_from(event.dict['pos'])
 
   screen.blit(background, (0, 0))
@@ -145,8 +170,12 @@ while 1:
 					</section>
 				</section>
 				<section>
-					<h2>Based on: pygame/examples/chimp.py</h2>
-					<h3>More info at: http://pygame.org/</h3>
+					<h1>Resources</h1>
+					<ul>
+						<li>Example based on: pygame/examples/chimp.py</li>
+						<li>This code: <a href="https://github.com/mogmi/pyladiessthlm-hello-pygame">github.com/mogmi/pyladiessthlm-hello-pygame</a></li>
+						<li><a href="http://pygame.org/">pygame.org</a></li>
+					</ul>
 				</section>
 			</div>
 
